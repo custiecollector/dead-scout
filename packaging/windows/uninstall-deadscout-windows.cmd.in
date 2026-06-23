@@ -1,0 +1,6 @@
+@echo off
+setlocal
+set "APPDIR=%LOCALAPPDATA%\Programs\DeadScout Desktop"
+del "%APPDATA%\Microsoft\Windows\Start Menu\Programs\DeadScout Desktop.lnk" >NUL 2>NUL
+if exist "%APPDIR%" rmdir /S /Q "%APPDIR%"
+echo DeadScout Desktop ZIP install files removed. User capture/session data outside this folder is left untouched.

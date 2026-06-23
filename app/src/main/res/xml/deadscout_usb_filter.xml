@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- RTL-SDR Blog V3/V4 / RTL2832U family. -->
+    <usb-device vendor-id="3034" product-id="10290" />
+    <usb-device vendor-id="3034" product-id="10296" />
+
+    <!-- 802.15.4 / serial sniffer dongles. -->
+    <usb-device vendor-id="6421" />
+    <usb-device vendor-id="1105" />
+    <usb-device vendor-id="4292" />
+    <usb-device vendor-id="1027" />
+    <usb-device vendor-id="6790" />
+
+    <!-- HackRF / wideband SDR families. -->
+    <usb-device vendor-id="7504" />
+</resources>

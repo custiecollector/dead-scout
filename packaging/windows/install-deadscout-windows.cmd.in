@@ -1,0 +1,10 @@
+@echo off
+setlocal
+set "APPDIR=%LOCALAPPDATA%\Programs\DeadScout Desktop"
+if not exist "%APPDIR%" mkdir "%APPDIR%"
+copy /Y "%~dp0deadscout-desktop.jar" "%APPDIR%\deadscout-desktop.jar" >NUL
+copy /Y "%~dp0deadscout-windows.cmd" "%APPDIR%\deadscout-windows.cmd" >NUL
+copy /Y "%~dp0desktop-readme.txt" "%APPDIR%\desktop-readme.txt" >NUL
+powershell -NoProfile -ExecutionPolicy Bypass -Command "$ws=New-Object -ComObject WScript.Shell; $s=$ws.CreateShortcut([Environment]::GetFolderPath('Programs') + '\DeadScout Desktop.lnk'); $s.TargetPath='%APPDIR%\deadscout-windows.cmd'; $s.WorkingDirectory='%APPDIR%'; $s.Save()"
+echo DeadScout Desktop installed to %APPDIR%.
+echo Run: %APPDIR%\deadscout-windows.cmd

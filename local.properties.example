@@ -1,0 +1,3 @@
+# Optional Android SDK location if ANDROID_HOME/ANDROID_SDK_ROOT is not set.
+# This file is ignored by Git.
+# sdk.dir=/path/to/android-sdk

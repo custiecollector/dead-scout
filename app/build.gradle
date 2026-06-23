@@ -1,0 +1,58 @@
+plugins { id 'com.android.application' }
+
+import java.util.Properties
+
+def localProps = new Properties()
+def localPropsFile = rootProject.file('local.properties')
+if (localPropsFile.exists()) {
+    localPropsFile.withInputStream { localProps.load(it) }
+}
+
+def releaseStoreFile = localProps.getProperty('DEADSCOUT_RELEASE_STORE_FILE', '').trim()
+def releaseStorePassword = localProps.getProperty('DEADSCOUT_RELEASE_STORE_PASSWORD', '').trim()
+def releaseKeyAlias = localProps.getProperty('DEADSCOUT_RELEASE_KEY_ALIAS', '').trim()
+def releaseKeyPassword = localProps.getProperty('DEADSCOUT_RELEASE_KEY_PASSWORD', '').trim()
+def releaseSigningConfigured = [releaseStoreFile, releaseStorePassword, releaseKeyAlias, releaseKeyPassword].every { it != null && !it.isEmpty() }
+
+android {
+    namespace 'org.deadscout.app'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId 'org.deadscout.app'
+        minSdk 26
+        targetSdk 35
+        versionCode 31
+        versionName '0.2.25'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    signingConfigs {
+        releaseSigning {
+            enableV2Signing true
+            enableV3Signing true
+            if (releaseSigningConfigured) {
+                storeFile rootProject.file(releaseStoreFile)
+                storePassword releaseStorePassword
+                keyAlias releaseKeyAlias
+                keyPassword releaseKeyPassword
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            // Apply optional release signing values from ignored project properties.
+            // Keep signing material out of source control.
+            if (releaseSigningConfigured) {
+                signingConfig signingConfigs.releaseSigning
+            }
+            minifyEnabled false
+            shrinkResources false
+        }
+    }
+}

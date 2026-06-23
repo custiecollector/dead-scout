@@ -1,0 +1,30 @@
+# Build outputs
+.gradle/
+build/
+app/build/
+*/build/
+
+# Local Android/IDE state
+local.properties
+.idea/
+.vscode/
+.DS_Store
+*.log
+
+# Signing material and packaged artifacts
+keystore/
+*.jks
+*.keystore
+*.p12
+*.pfx
+*.pem
+*.apk
+*.aab
+*.jar
+*.zip
+*.tar.gz
+
+# Generated caches
+.kotlin/
+.cxx/
+externalNativeBuild/
